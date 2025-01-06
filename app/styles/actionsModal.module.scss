@@ -1,0 +1,84 @@
+.actionModal {
+  background: #C2D9FF;
+  border-radius: 20px;
+  box-shadow: -2px -3px 39px #aac4ef, 1px 1px 7px #fff;
+  min-height: 500px;
+  margin: calc(50vh - 250px) auto;
+  padding: 32px 40px;
+  outline: none;
+  width: 350px;
+}
+
+.title {
+  color: #24243e;
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 370px;
+  justify-content: space-between;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.contentInput,
+.submitButton {
+  border: none;
+  display: block;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  max-width: 270px;
+}
+
+.contentInput {
+  background: #C2D9FF;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #aac4ef, inset -6px -4px 6px #fff;
+  font-size: 14px;
+  height: 50px;
+  padding-left: 20px;
+  padding: 16px;
+  margin-top: 8px;
+
+  &textarea {
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+}
+
+.contentInput::placeholder {
+  color: #808080;
+}
+
+.validationError {
+  color: #d30505;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.submitButton {
+  background: #573b8a;
+  border-radius: 20px;
+  box-shadow: 6px 6px 6px #9cbaeb, -5px -3px 8px #fff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+  height: 40px;
+  margin-top: 20px;
+  transition: 0.5s;
+}
+
+.submitButton:hover {
+  box-shadow: none;
+}

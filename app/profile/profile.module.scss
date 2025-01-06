@@ -1,0 +1,78 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 100px;
+  width: 100%;
+}
+
+.cardInfo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.avatar {
+  align-items: center;
+  background-color: #C2D9FF;
+  border-radius: 100px;
+  bottom: 111px;
+  display: flex;
+  font-size: 32px;
+  height: 150px;
+  justify-content: center;
+  margin-bottom: -90px;
+  position: relative;
+  text-transform: capitalize;
+  width: 150px;
+}
+
+.name {
+  font-size: 20px;
+}
+
+.email {
+  margin: 32px 0;
+}
+
+.myPosts {
+  border-top: 1px solid #74747477;
+  margin-top: 32px;
+  padding: 32px;
+  width: 90%;
+}
+
+.myPostsTitle {
+  color: #fff;
+  font-size: 40px;
+}
+
+.addButton {
+  background: #573b8a;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  height: 40px;
+  justify-content: center;
+  margin: 40px auto;
+  outline: none;
+  transition: .2s ease-in;
+  width: fit-content;
+  padding: 8px 16px;
+}
+
+.editHolder {
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  top: 0;
+}

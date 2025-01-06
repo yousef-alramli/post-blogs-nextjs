@@ -1,0 +1,84 @@
+
+.blogsContainer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.editHolder {
+  position: absolute;
+  display: flex;
+  gap: 12px;
+  right: 24px;
+  top: 20px;
+
+  * {
+    cursor: pointer;
+  }
+}
+
+.trashIcon {
+  color: #a50000;
+}
+
+.title {
+  color: #6e62f0e3;
+  cursor: pointer;
+  display: flex;
+  font-size: 2.3em;
+  font-weight: bold;
+  justify-content: center;
+  margin: 20px 0 40px;
+  text-decoration: none;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    color: #8d84f1;
+  }
+}
+
+.body {
+  border-top: 1px solid #74747477;
+  font-size: 18px;
+  line-height: 24px;
+  max-height: 305px;
+  overflow: auto;
+  padding: 24px 12px 0;
+
+  &::-webkit-scrollbar {
+    background-color: #6e62f048;
+    border-radius: 5px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #6e62f0e3;
+    border-radius: 5px;
+  }
+}
+
+.postInfo {
+  border-top: 1px solid #74747477;
+  display: flex;
+  margin-top: 20px;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.userHolder {
+  border-right: 1px solid #74747477;
+  flex: 1;
+}
+
+.userName {
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: capitalize;
+}
+
+.dateHolder {
+  flex: 1
+}
