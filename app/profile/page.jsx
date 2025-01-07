@@ -9,6 +9,7 @@ import { POST_INITIAL, POST_INPUTS, USER_INPUTS } from "../../constants/modal.co
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setLoading } from "../../redux/loadingReducer";
 import { setPosts } from "../../redux/postsReducer";
+import { toastError } from '../../utils/toast.js';
 import styles from "./profile.module.scss";
 
 const Profile = () => {
@@ -26,62 +27,85 @@ const Profile = () => {
   }, []);
 
   const initData = async () => {
-    dispatch(setLoading(true));
-    const postsRes = await http({
-      method: "GET",
-      url: "posts?ownPosts=true",
-    });
-    dispatch(setPosts(JSON.parse(postsRes)));
-    console.log(JSON.parse(postsRes));
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      const postsRes = await http({
+        method: "GET",
+        url: "posts?ownPosts=true",
+      });
+      dispatch(setPosts(JSON.parse(postsRes)));
+      dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   };
 
   const createBlog = async (data) => {
-    dispatch(setLoading(true));
-    await http({
-      method: "POST",
-      url: "posts",
-      data,
-    });
-    await initData();
-    setOpenCreateModal(false);
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      await http({
+        method: "POST",
+        url: "posts",
+        data,
+      });
+      await initData();
+      setOpenCreateModal(false);
+      dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   };
 
   const handleUpdatePost = async (newData) => {
-    dispatch(setLoading(true));
-    await http({
-      method: "PUT",
-      url: `posts/${newData.id}`,
-      data: newData,
-    });
-    await initData();
-    setOpenCreateModal(false);
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      await http({
+        method: "PUT",
+        url: `posts/${newData.id}`,
+        data: newData,
+      });
+      await initData();
+      setOpenCreateModal(false);
+      dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   };
 
   const handleDeletePost = async (id) => {
-    dispatch(setLoading(true));
-    await http({
-      method: "DELETE",
-      url: `posts/${id}`,
-    });
-    await initData();
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      await http({
+        method: "DELETE",
+        url: `posts/${id}`,
+      });
+      await initData();
+      dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   }
 
   const editUser = async (data) => {
-    dispatch(setLoading(true));
-
-    const updatedUser = await http({
-      method: "PUT",
-      url: `users/${user.id}`,
-      data,
-    });
-    cookies.set("user", updatedUser);
-    setUser(updatedUser)
-    setOpenUserModal(false);
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      const updatedUser = await http({
+        method: "PUT",
+        url: `users/${user.id}`,
+        data,
+      });
+      cookies.set("user", updatedUser);
+      setUser(updatedUser)
+      setOpenUserModal(false);
+      dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   }
 
   return (

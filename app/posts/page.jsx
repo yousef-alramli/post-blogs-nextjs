@@ -5,6 +5,7 @@ import { setPosts } from '../../redux/postsReducer';
 import Blogs from '../components/blogs';
 import { useAppDispatch } from '../../redux/hooks';
 import { setLoading } from '../../redux/loadingReducer';
+import { toastError } from '../../utils/toast.js';
 import styles from './posts.module.scss'
 
 const Posts = () => {
@@ -15,15 +16,20 @@ const Posts = () => {
   }, []);
 
   const fetchData = async () => {
-    dispatch(setLoading(true));
-    const postsData = await http({ method: 'GET', url: 'posts' });
-    dispatch(setPosts(JSON.parse(postsData)));
-    dispatch(setLoading(false));
+    try {
+      dispatch(setLoading(true));
+      const postsData = await http({ method: 'GET', url: 'posts' });
+      dispatch(setPosts(JSON.parse(postsData)));
+      dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   }
 
   return (
     <div className={styles.container}>
-      <Blogs/>
+      <Blogs />
     </div>
   )
 }

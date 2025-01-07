@@ -1,6 +1,5 @@
 'use client';
 
-import styles from './login.module.scss'
 import { ErrorMessage, Field, Formik } from 'formik'
 import { object, string } from 'yup';
 import { useCookies } from 'next-client-cookies';
@@ -8,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { http } from '../../utils/http';
 import { useAppDispatch } from '../../redux/hooks';
 import { setLoading } from '../../redux/loadingReducer';
+import { toastError } from '../../utils/toast.js';
+import styles from './login.module.scss'
 
 const Login = () => {
   const cookies = useCookies();
@@ -38,6 +39,7 @@ const Login = () => {
       router.push('/posts');
       dispatch(setLoading(false));
     } catch (error) {
+      toastError(error?.message)
       dispatch(setLoading(false));
     }
   }
@@ -54,6 +56,7 @@ const Login = () => {
       router.push('/posts');
       dispatch(setLoading(false));
     } catch (error) {
+      toastError(error?.message)
       dispatch(setLoading(false));
     }
   }
@@ -77,25 +80,34 @@ const Login = () => {
             {({ handleSubmit, errorMessage }) => (
               <>
                 <label htmlFor='hidden-input' className={styles.label} aria-hidden='true'>Sign up</label>
-                <Field className={styles.input} name='firstName' type='text' placeholder='First Name' />
-                <p className='validation-error'>
-                  <ErrorMessage name='firstName' render={errorMessage} />
-                </p>
 
-                <Field className={styles.input} name='lastName' type='text' placeholder='Last Name' />
-                <p className='validation-error'>
-                  <ErrorMessage name='lastName' render={errorMessage} />
-                </p>
+                <div className={styles.fieldHolder}>
+                  <Field className={styles.input} name='firstName' type='text' placeholder='First Name' />
+                  <p className={styles.validationError}>
+                    <ErrorMessage name='firstName' render={errorMessage} />
+                  </p>
+                </div>
 
-                <Field className={styles.input} name='email' type='email' placeholder='Email' />
-                <p className='validation-error'>
-                  <ErrorMessage name='email' render={errorMessage} />
-                </p>
+                <div className={styles.fieldHolder}>
+                  <Field className={styles.input} name='lastName' type='text' placeholder='Last Name' />
+                  <p className={styles.validationError}>
+                    <ErrorMessage name='lastName' render={errorMessage} />
+                  </p>
+                </div>
 
-                <Field className={styles.input} name='password' type='password' placeholder='Password' />
-                <p className='validation-error'>
-                  <ErrorMessage name='password' render={errorMessage} />
-                </p>
+                <div className={styles.fieldHolder}>
+                  <Field className={styles.input} name='email' type='email' placeholder='Email' />
+                  <p className={styles.validationError}>
+                    <ErrorMessage name='email' render={errorMessage} />
+                  </p>
+                </div>
+
+                <div className={styles.fieldHolder}>
+                  <Field className={styles.input} name='password' type='password' placeholder='Password' />
+                  <p className={styles.validationError}>
+                    <ErrorMessage name='password' render={errorMessage} />
+                  </p>
+                </div>
 
                 <button className={styles.button} type='submit' onClick={handleSubmit}>Sign up</button>
               </>
@@ -115,15 +127,20 @@ const Login = () => {
             {({ handleSubmit, errorMessage }) => (
               <>
                 <label htmlFor='hidden-input' className={styles.label} aria-hidden='true'>Login</label>
-                <Field className={styles.input} name='email' type='email' placeholder='Email' />
-                <p className='validation-error'>
-                  <ErrorMessage name='email' render={errorMessage} />
-                </p>
 
-                <Field className={styles.input} name='password' type='password' placeholder='Password' />
-                <p className='validation-error'>
-                  <ErrorMessage name='password' render={errorMessage} />
-                </p>
+                <div className={styles.fieldHolder}>
+                  <Field className={styles.input} name='email' type='email' placeholder='Email' />
+                  <p className={styles.validationError}>
+                    <ErrorMessage name='email' render={errorMessage} />
+                  </p>
+                </div>
+
+                <div className={styles.fieldHolder}>
+                  <Field className={styles.input} name='password' type='password' placeholder='Password' />
+                  <p className={styles.validationError}>
+                    <ErrorMessage name='password' render={errorMessage} />
+                  </p>
+                </div>
 
                 <button className={styles.button} type='submit' onClick={handleSubmit}>Login</button>
               </>

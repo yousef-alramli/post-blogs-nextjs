@@ -16,6 +16,10 @@ export const http = async (...args) => {
     }
   });
 
-  const res = await axiosInstance(...args);
-  return JSON.stringify(res.data);
+  try {
+    const res = await axiosInstance(...args);
+    return JSON.stringify(res.data);
+  } catch (error) {
+    return Promise.reject(error?.response?.data || error);
+  }
 }

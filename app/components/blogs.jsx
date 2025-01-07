@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setLoading } from "../../redux/loadingReducer";
 import { http } from "../../utils/http";
 import { setPosts } from "../../redux/postsReducer";
+import { toastError } from '../../utils/toast.js';
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-dark-purple/theme.css";
 
@@ -29,8 +30,8 @@ const Blogs = ({
   const postToUpdate = useRef({});
 
   const onPageChange = async (event) => {
+    try {
     dispatch(setLoading(true));
-    console.log("event >>", event);
     setFirst(event.first);
     setPerPage(event.rows);
     const postsRes = await http({
@@ -39,6 +40,10 @@ const Blogs = ({
     });
     dispatch(setPosts(JSON.parse(postsRes)));
     dispatch(setLoading(false));
+    } catch (error) {
+      toastError(error?.message)
+      dispatch(setLoading(false));
+    }
   };
 
   const onPostEdit = ({ title, body, id }) => {

@@ -11,8 +11,8 @@ export const middleware = async (req) => {
   const isAuthOnlyRoute = authOnlyRoutes.includes(path);
   const isNoAuthRoute = noAuthOnlyRoutes.includes(path);
 
-  const user = cookieStore.get('user')
-  const cookie = user ? JSON.parse(user.value) : {};
+  const user = cookieStore.get('user');
+  const cookie = user?.value ? JSON.parse(user.value) : {};
 
   // Redirect to '/login' if the user is NOT authenticated
   if (isAuthOnlyRoute && !cookie?.token) {
