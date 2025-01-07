@@ -78,7 +78,7 @@ const Login = () => {
             onSubmit={onSignup}
           >
             {({ handleSubmit, errorMessage }) => (
-              <>
+              <form>
                 <label htmlFor='hidden-input' className={styles.label} aria-hidden='true'>Sign up</label>
 
                 <div className={styles.fieldHolder}>
@@ -110,7 +110,7 @@ const Login = () => {
                 </div>
 
                 <button className={styles.button} type='submit' onClick={handleSubmit}>Sign up</button>
-              </>
+              </form>
             )}
           </Formik>
         </div>
@@ -125,7 +125,7 @@ const Login = () => {
             onSubmit={onLogin}
           >
             {({ handleSubmit, errorMessage }) => (
-              <>
+              <form>
                 <label htmlFor='hidden-input' className={styles.label} aria-hidden='true'>Login</label>
 
                 <div className={styles.fieldHolder}>
@@ -143,7 +143,7 @@ const Login = () => {
                 </div>
 
                 <button className={styles.button} type='submit' onClick={handleSubmit}>Login</button>
-              </>
+              </form>
             )}
           </Formik>
         </div>
